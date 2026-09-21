@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+#glossary_9zcu9s {
+  background: #F7F9FC;
+  color: #0B1F4D;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10px;
+  text-align: left;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+#glossary_9zcu9s * { box-sizing: border-box; }
+#glossary_9zcu9s .g-header { margin-bottom: 20px; }
+#glossary_9zcu9s .g-title { font-size: 17px; font-weight: 700; margin: 0 0 4px 0; }
+#glossary_9zcu9s .g-subtitle { opacity: 0.7; font-size: 12px; margin: 0; }
+#glossary_9zcu9s .g-search-wrap { position: relative; margin-bottom: 16px; }
+#glossary_9zcu9s .g-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5; width: 16px; height: 16px; }
+#glossary_9zcu9s .g-search {
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  border: 1px solid #0B1F4D30;
+  border-radius: 8px;
+  background: #F7F9FC;
+  color: #0B1F4D;
+  font-family: inherit;
+  font-size: 12px;
+  outline: none;
+}
+#glossary_9zcu9s .g-search:focus { border-color: #0B1F4D60; }
+#glossary_9zcu9s .g-az { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 16px; }
+#glossary_9zcu9s .g-az-btn {
+  width: 28px; height: 28px; border: none; border-radius: 6px;
+  background: transparent; color: #0B1F4D;
+  font-size: 0.8em; font-weight: 500; cursor: pointer; transition: all 0.15s;
+}
+#glossary_9zcu9s .g-az-btn:hover:not(:disabled) { background: #0B1F4D15; }
+#glossary_9zcu9s .g-az-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+#glossary_9zcu9s .g-az-btn.active { background: #0B1F4D; color: #F7F9FC; }
+#glossary_9zcu9s .g-controls { display: flex; gap: 8px; margin-bottom: 16px; }
+#glossary_9zcu9s .g-ctrl-btn {
+  padding: 6px 12px; border: 1px solid #0B1F4D40; border-radius: 6px;
+  background: transparent; color: #0B1F4D;
+  font-size: 0.8em; font-weight: 500; cursor: pointer; transition: all 0.15s;
+}
+#glossary_9zcu9s .g-ctrl-btn:hover { background: #0B1F4D10; }
+#glossary_9zcu9s .g-terms { display: flex; flex-direction: column; gap: 8px; }
+#glossary_9zcu9s .g-letter-group { border: 1px solid #0B1F4D30; border-radius: 8px; overflow: hidden; }
+#glossary_9zcu9s .g-letter-btn {
+  width: 100%; display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border: none; background: #0B1F4D05;
+  color: #0B1F4D; font-family: inherit;
+  font-size: 11px; font-weight: 700;
+  text-align: left; cursor: pointer; transition: background 0.15s;
+}
+#glossary_9zcu9s .g-letter-btn:hover { background: #0B1F4D10; }
+#glossary_9zcu9s .g-letter-btn[aria-expanded="true"] { background: #0B1F4D10; }
+#glossary_9zcu9s .g-letter-icon { width: 18px; height: 18px; transition: transform 0.2s; }
+#glossary_9zcu9s .g-letter-btn[aria-expanded="true"] .g-letter-icon { transform: rotate(90deg); }
+#glossary_9zcu9s .g-letter-count { margin-left: auto; font-weight: 400; opacity: 0.5; font-size: 0.8em; }
+#glossary_9zcu9s .g-letter-terms { padding: 12px; padding-top: 0; display: none; }
+#glossary_9zcu9s .g-letter-terms.open { display: flex; flex-direction: column; gap: 8px; animation: glossary_9zcu9s-fadein 0.2s; }
+#glossary_9zcu9s .g-term { border: 1px solid #0B1F4D20; border-radius: 8px; overflow: hidden; }
+#glossary_9zcu9s .g-term-btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 16px; border: none; background: transparent;
+  color: #0B1F4D; font-family: inherit;
+  font-size: 10px; font-weight: 600;
+  text-align: left; cursor: pointer; transition: background 0.15s;
+}
+#glossary_9zcu9s .g-term-btn:hover { background: #0B1F4D08; }
+#glossary_9zcu9s .g-term-btn:focus { outline: 2px solid #0B1F4D40; outline-offset: -2px; }
+#glossary_9zcu9s .g-term-btn[aria-expanded="true"] { background: #0B1F4D08; }
+#glossary_9zcu9s .g-term-icon { width: 16px; height: 16px; transition: transform 0.2s; }
+#glossary_9zcu9s .g-term-btn[aria-expanded="true"] .g-term-icon { transform: rotate(180deg); }
+#glossary_9zcu9s .g-term-content { padding: 0 16px 16px; font-size: 12px; display: none; }
+#glossary_9zcu9s .g-term-content.open { display: block; animation: glossary_9zcu9s-fadein 0.2s; }
+#glossary_9zcu9s .g-def { opacity: 0.8; }
+#glossary_9zcu9s .g-detail {
+  margin: 10px 0 0;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  color: #4B5563;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+#glossary_9zcu9s .g-detail-label {
+  color: #4B5563;
+  margin-right: 2px;
+}
+
+
+
+
+#glossary_9zcu9s .g-img-wrap { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 6px; overflow: hidden; background: #0B1F4D10; margin-bottom: 12px; }
+@supports not (aspect-ratio: 16/9) { #glossary_9zcu9s .g-img-wrap { padding-top: 56.25%; } #glossary_9zcu9s .g-img-wrap .g-img { position: absolute; top: 0; left: 0; } }
+#glossary_9zcu9s .g-img { width: 100%; height: 100%; object-fit: contain; }
+#glossary_9zcu9s .g-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; color: #0B1F4D; font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+#glossary_9zcu9s .g-link:hover { opacity: 0.8; }
+#glossary_9zcu9s .g-link-icon { width: 12px; height: 12px; }
+#glossary_9zcu9s .g-card { padding: 16px; }
+#glossary_9zcu9s .g-card-title { font-weight: 600; margin-bottom: 8px; }
+#glossary_9zcu9s .g-empty { text-align: center; padding: 32px; opacity: 0.6; }
+#glossary_9zcu9s .g-watermark { margin-top: 12px; font-size: 12px; color: #6b7280; text-align: center; }
+#glossary_9zcu9s mark { background: #fef08a; border-radius: 2px; padding: 0 2px; }
+@keyframes glossary_9zcu9s-fadein { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Functional separation: tools, navigation, glossary content */
+#glossary_9zcu9s .g-tools {
+  background: #ffffff;
+  border: 1px solid #0B1F4D20;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+#glossary_9zcu9s .g-tools-label,
+#glossary_9zcu9s .g-nav-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .65;
+  margin: 0 0 8px;
+}
+#glossary_9zcu9s .g-nav {
+  background: #ffffff;
+  border: 1px solid #0B1F4D20;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 18px;
+}
+#glossary_9zcu9s .g-controls {
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+#glossary_9zcu9s .g-pdf-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0B1F4D;
+  color: #ffffff;
+  border-color: #0B1F4D;
+}
+#glossary_9zcu9s .g-pdf-btn:hover { background: #163565; }
+#glossary_9zcu9s .g-copy-btn {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #0B1F4D25;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #0B1F4D;
+  cursor: pointer;
+}
+#glossary_9zcu9s .g-copy-btn:hover { background: #0B1F4D08; }
+#glossary_9zcu9s .g-copy-btn:focus { outline: 2px solid #0B1F4D40; outline-offset: 2px; }
+#glossary_9zcu9s .g-copy-icon { width: 14px; height: 14px; }
+#glossary_9zcu9s .g-def-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+#glossary_9zcu9s .g-def-row .g-def {
+  flex: 1;
+  margin-top: 0;
+}
+#glossary_9zcu9s .g-copy-status {
+  min-height: 14px;
+  margin: 4px 0 0;
+  font-size: 9px;
+  font-weight: 600;
+  opacity: .7;
+}
+#glossary_9zcu9s .g-section-heading {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  opacity: .7;
+}
+@media (max-width: 560px) {
+  #glossary_9zcu9s { padding: 16px; }
+  #glossary_9zcu9s .g-pdf-btn { margin-left: 0; }
+}
+@media print {
+  body { background: #fff !important; }
+  #glossary_9zcu9s {
+    max-width: none;
+    padding: 0;
+    background: #fff;
+    color: #0B1F4D;
+    font-size: 10pt;
+  }
+  #glossary_9zcu9s .g-tools,
+  #glossary_9zcu9s .g-nav,
+  #glossary_9zcu9s .g-controls,
+  #glossary_9zcu9s .g-copy-btn,
+  #glossary_9zcu9s .g-copy-status { display: none !important; }
+  #glossary_9zcu9s .g-letter-group,
+  #glossary_9zcu9s .g-term { break-inside: avoid; border-color: #cbd5e1; }
+  #glossary_9zcu9s .g-letter-terms,
+  #glossary_9zcu9s .g-term-content { display: block !important; }
+  #glossary_9zcu9s .g-letter-icon,
+  #glossary_9zcu9s .g-term-icon { display: none; }
+  #glossary_9zcu9s .g-letter-btn,
+  #glossary_9zcu9s .g-term-btn { cursor: default; }
+}
+
+
+#glossary_9zcu9s .g-filter-divider {
+  height: 1px;
+  background: #0B1F4D18;
+  margin: 12px 0;
+}
+#glossary_9zcu9s .g-filter-grid {
+  display: grid;
+  grid-template-columns: minmax(180px, .8fr) minmax(260px, 1.6fr);
+  gap: 14px;
+}
+#glossary_9zcu9s .g-filter-label {
+  margin: 0 0 7px;
+  color: #4B5563;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+#glossary_9zcu9s .g-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+#glossary_9zcu9s .g-filter-btn {
+  padding: 5px 8px;
+  border: 1px solid #9CA3AF;
+  border-radius: 5px;
+  background: #fff;
+  color: #4B5563;
+  font-family: inherit;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+#glossary_9zcu9s .g-filter-btn:hover { background: #F3F4F6; }
+#glossary_9zcu9s .g-filter-btn.active {
+  background: #0B1F4D;
+  border-color: #0B1F4D;
+  color: #fff;
+}
+#glossary_9zcu9s .g-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+#glossary_9zcu9s .g-type-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: .045em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+#glossary_9zcu9s .g-type-tag-general {
+  background: #E8EEF6;
+  border: 1px solid #B7C5D8;
+  color: #425466;
+}
+#glossary_9zcu9s .g-type-tag-detailing {
+  background: #E9EDF3;
+  border: 1px solid #AEB8C6;
+  color: #374151;
+}
+#glossary_9zcu9s .g-meta-label {
+  color: #4B5563;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+#glossary_9zcu9s .g-detail {
+  margin-top: 0;
+}
+@media (max-width: 650px) {
+  #glossary_9zcu9s .g-filter-grid { grid-template-columns: 1fr; }
+}
+@media print {
+  #glossary_9zcu9s .g-filter-grid,
+  #glossary_9zcu9s .g-filter-divider { display: none !important; }
+}
+
+
+#glossary_9zcu9s .g-filter-head {
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+  margin-bottom:14px;
+}
+#glossary_9zcu9s .g-filter-help {
+  margin:3px 0 0; font-size:9px; color:#6B7280; line-height:1.4;
+}
+#glossary_9zcu9s .g-filter-section {
+  padding:11px 0; border-top:1px solid #E5E7EB;
+}
+#glossary_9zcu9s .g-filter-section:first-of-type { border-top:0; padding-top:0; }
+#glossary_9zcu9s .g-filter-hint {
+  margin-left:5px; font-size:7px; font-weight:600; color:#9CA3AF; letter-spacing:.04em;
+}
+#glossary_9zcu9s .g-clear-btn {
+  border:0; background:transparent; color:#6B7280; font:600 8px Montserrat,sans-serif;
+  text-transform:uppercase; letter-spacing:.04em; cursor:pointer; padding:4px 2px;
+}
+#glossary_9zcu9s .g-clear-btn:hover { color:#0B1F4D; text-decoration:underline; }
+#glossary_9zcu9s .g-filter-btn,
+#glossary_9zcu9s .g-az-btn {
+  transition:background .15s,border-color .15s,color .15s,box-shadow .15s;
+}
+/* TYPE has its own visual language */
+#glossary_9zcu9s .g-type-filter[data-type="General"] {
+  background:#F8FAFC; border-color:#CBD5E1; color:#475569;
+}
+#glossary_9zcu9s .g-type-filter[data-type="General"].active {
+  background:#E8EEF6; border-color:#879AB4; color:#253B56;
+  box-shadow:inset 0 0 0 1px #879AB4;
+}
+#glossary_9zcu9s .g-type-filter[data-type="Detailing"] {
+  background:#F8FAFC; border-color:#D1D5DB; color:#4B5563;
+}
+#glossary_9zcu9s .g-type-filter[data-type="Detailing"].active {
+  background:#E5E7EB; border-color:#6B7280; color:#1F2937;
+  box-shadow:inset 0 0 0 1px #6B7280;
+}
+
+
+
+/* LETTER selection is intentionally different from filter chips */
+#glossary_9zcu9s .g-az-btn.active {
+  background:#0B1F4D; color:#fff; box-shadow:0 1px 3px #0B1F430F;
+}
+#glossary_9zcu9s .g-active-summary {
+  margin-top:10px; padding:8px 10px; border-radius:6px;
+  background:#F8FAFC; border-left:3px solid #94A3B8;
+  color:#4B5563; font-size:8.5px; font-weight:600; letter-spacing:.015em;
+}
+#glossary_9zcu9s .g-filter-buttons { gap:6px; }
+#glossary_9zcu9s .g-az { margin-bottom:0; }
+@media print {
+  #glossary_9zcu9s .g-active-summary { display:none!important; }
+}
+
+
+/* v5 — compact CBX University visual system */
+#glossary_9zcu9s { background:#F7F9FC; color:#1C1C1C; padding:20px; }
+#glossary_9zcu9s .g-header {
+  display:flex; align-items:center; gap:20px; padding:4px 2px 16px;
+  border-bottom:1px solid #D9E2EE; margin-bottom:12px;
+}
+#glossary_9zcu9s .g-brand-lockup { width:92px; flex:0 0 92px; line-height:1; }
+#glossary_9zcu9s .g-brand-cbx { position:relative; font-size:28px; font-weight:700; letter-spacing:-2px; color:#1C1C1C; width:max-content; }
+#glossary_9zcu9s .g-brand-mark { position:absolute; width:10px; height:4px; background:#4266A6; transform:rotate(-35deg); right:-9px; top:2px; border-radius:1px; }
+#glossary_9zcu9s .g-brand-solutions { font-size:7px; font-weight:700; letter-spacing:.16em; margin:2px 0 3px; }
+#glossary_9zcu9s .g-brand-university { display:inline-block; background:#82A1CE; color:#fff; padding:3px 7px; font-size:6px; font-weight:700; letter-spacing:.12em; }
+#glossary_9zcu9s .g-title-wrap { border-left:1px solid #D9E2EE; padding-left:20px; }
+#glossary_9zcu9s .g-eyebrow { color:#4266A6; font-size:7px; font-weight:700; letter-spacing:.18em; margin-bottom:3px; }
+#glossary_9zcu9s .g-title { margin:0; color:#0E418C; font-size:20px; line-height:1.05; font-weight:700; letter-spacing:.025em; text-transform:uppercase; }
+#glossary_9zcu9s .g-subtitle { margin:5px 0 0; color:#6D6D6D; font-size:7.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+
+#glossary_9zcu9s .g-tools { padding:8px 10px; border-radius:7px; margin-bottom:9px; background:#fff; border-color:#D9E2EE; }
+#glossary_9zcu9s .g-tool-row { display:flex; align-items:center; gap:9px; }
+#glossary_9zcu9s .g-search-wrap { width:210px; flex:0 1 210px; margin:0; }
+#glossary_9zcu9s .g-search { height:30px; padding:6px 9px 6px 30px; font-size:8px; letter-spacing:.06em; background:#fff; border-radius:5px; border-color:#CBD5E1; }
+#glossary_9zcu9s .g-search-icon { left:9px; width:13px; height:13px; }
+#glossary_9zcu9s .g-sort-wrap { display:flex; align-items:center; gap:4px; margin-left:auto; }
+#glossary_9zcu9s .g-sort-label { color:#6D6D6D; font-size:7px; font-weight:700; letter-spacing:.08em; margin-right:2px; }
+#glossary_9zcu9s .g-sort-btn {
+  border:1px solid #CBD5E1; background:#fff; color:#526174; border-radius:4px; padding:5px 7px;
+  font:700 7px Montserrat,sans-serif; letter-spacing:.055em; cursor:pointer;
+}
+#glossary_9zcu9s .g-sort-btn:hover { border-color:#82A1CE; color:#0E418C; }
+#glossary_9zcu9s .g-sort-btn.active { background:#4266A6; border-color:#4266A6; color:#fff; }
+#glossary_9zcu9s .g-controls { gap:4px; margin:0; flex-wrap:nowrap; }
+#glossary_9zcu9s .g-icon-action,#glossary_9zcu9s .g-pdf-compact {
+  height:26px; border:1px solid #CBD5E1; background:#fff; color:#526174; border-radius:4px; cursor:pointer;
+  font:700 8px Montserrat,sans-serif;
+}
+#glossary_9zcu9s .g-icon-action { width:26px; font-size:13px; }
+#glossary_9zcu9s .g-pdf-compact { padding:0 8px; background:#0E418C; color:#fff; border-color:#0E418C; letter-spacing:.04em; }
+
+#glossary_9zcu9s .g-nav { padding:9px 10px; margin-bottom:10px; border-radius:7px; border-color:#D9E2EE; }
+#glossary_9zcu9s .g-filter-head { margin-bottom:6px; align-items:center; }
+#glossary_9zcu9s .g-nav-label { margin:0; color:#0E418C; font-size:7px; letter-spacing:.13em; }
+#glossary_9zcu9s .g-filter-help { display:none; }
+#glossary_9zcu9s .g-filter-section { padding:7px 0; }
+#glossary_9zcu9s .g-filter-label { font-size:6.8px; letter-spacing:.1em; margin-bottom:5px; }
+#glossary_9zcu9s .g-filter-btn { padding:4px 7px; border-radius:4px; font-size:7px; }
+
+#glossary_9zcu9s .g-type-filter[data-type="General"].active { background:#E7EDF7; border-color:#82A1CE; color:#0E418C; box-shadow:none; }
+#glossary_9zcu9s .g-type-filter[data-type="Detailing"].active { background:#4266A6; border-color:#4266A6; color:#fff; box-shadow:none; }
+#glossary_9zcu9s .g-az-btn { width:24px; height:24px; border-radius:4px; font-size:7px; }
+#glossary_9zcu9s .g-az-btn.active { background:#0E418C; }
+#glossary_9zcu9s .g-clear-btn { font-size:6.5px; color:#6D6D6D; }
+
+#glossary_9zcu9s .g-active-summary {
+  display:inline-flex; width:auto; margin:6px 0 0; padding:3px 7px; min-height:0;
+  border:0; border-radius:99px; background:#EDF3FA; color:#526174;
+  font-size:6.8px; font-weight:600; letter-spacing:.025em;
+}
+#glossary_9zcu9s .g-section-heading { font-size:7px; color:#6D6D6D; margin:0 0 5px; }
+#glossary_9zcu9s .g-terms { gap:5px; }
+#glossary_9zcu9s .g-letter-group { border-radius:6px; border-color:#D9E2EE; }
+#glossary_9zcu9s .g-letter-btn { min-height:34px; padding:8px 11px; font-size:8px; letter-spacing:.08em; color:#0E418C; background:#EDF3FA; }
+#glossary_9zcu9s .g-letter-group:nth-child(3n+2) .g-letter-btn { background:#F0F5FB; color:#4266A6; }
+#glossary_9zcu9s .g-letter-group:nth-child(3n+3) .g-letter-btn { background:#E8F0FA; color:#315785; }
+#glossary_9zcu9s .g-letter-terms { padding:7px; padding-top:3px; gap:5px; }
+#glossary_9zcu9s .g-term { border-radius:5px; border-color:#E2E8F0; background:#fff; }
+#glossary_9zcu9s .g-term-btn { padding:9px 10px; min-height:34px; font-size:8px; font-weight:700; letter-spacing:.055em; text-transform:uppercase; color:#253B56; }
+#glossary_9zcu9s .g-term-content { padding:0 10px 9px; font-size:9px; line-height:1.45; color:#3F4854; }
+#glossary_9zcu9s .g-def-row { gap:6px; }
+#glossary_9zcu9s .g-def { margin:1px 0 0; font-size:8.5px; line-height:1.5; opacity:.9; }
+#glossary_9zcu9s .g-copy-btn { width:23px; height:23px; flex-basis:23px; border-radius:4px; }
+#glossary_9zcu9s .g-copy-icon { width:11px; height:11px; }
+#glossary_9zcu9s .g-meta-row { gap:4px; margin-top:7px; }
+#glossary_9zcu9s .g-meta-label { font-size:6.2px; color:#6D6D6D; letter-spacing:.08em; }
+
+
+#glossary_9zcu9s .g-type-tag-general { background:#F0F4F9; border-color:#C7D3E2; color:#526174; }
+#glossary_9zcu9s .g-type-tag-detailing { background:#E1EAF6; border-color:#A9BEDA; color:#315785; }
+
+
+
+#glossary_9zcu9s .g-group-type.general .g-letter-btn { background:#E7EDF7; color:#315785; }
+#glossary_9zcu9s .g-group-type.detailing .g-letter-btn { background:#4266A6; color:#fff; }
+
+@media(max-width:700px){
+ #glossary_9zcu9s .g-tool-row{flex-wrap:wrap}
+ #glossary_9zcu9s .g-search-wrap{width:100%;flex-basis:100%}
+ #glossary_9zcu9s .g-sort-wrap{margin-left:0}
+ #glossary_9zcu9s .g-header{align-items:flex-start}
+}
+
+
+#glossary_9zcu9s .g-brand-lockup {
+  width: 76px;
+  flex: 0 0 76px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#glossary_9zcu9s .g-brand-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+}
+
+
+#glossary_9zcu9s .g-role-panel {padding:16px; background:#EDF3FA; border-color:#82A1CE;}
+#glossary_9zcu9s .g-role-heading {font-size:13px; color:#0E418C; margin:0 0 6px;}
+#glossary_9zcu9s .g-role-help {font-size:10px; line-height:1.5; margin:0 0 12px; color:#526174;}
+#glossary_9zcu9s .g-role-help:empty {display:none;}
+#glossary_9zcu9s .g-role-btn {font-size:9px; min-height:36px; padding:8px 10px;}
+#glossary_9zcu9s .g-role-btn.active {background:#0E418C; color:white; border-color:#0E418C;}
+#glossary_9zcu9s button:focus-visible {outline:2px solid #0E418C; outline-offset:3px;}
+#glossary_9zcu9s .g-tool-row {flex-wrap:wrap;}
+#glossary_9zcu9s .g-search-wrap {flex:1 1 210px;}
+#glossary_9zcu9s .g-type-tag {white-space:normal;}
+</style>
+</head>
+<body>
+<div id="glossary_9zcu9s">
+<header class="g-header">
+  <div class="g-brand-lockup" aria-label="CBX Solutions University"><img class="g-brand-logo" src="data:image/png;base64,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" alt="CBX Solutions University"></div>
+  <div class="g-title-wrap">
+    <div class="g-eyebrow">REFERENCE LIBRARY</div>
+    <h1 class="g-title">COMSENSE GLOSSARY</h1>
+    <p class="g-subtitle">KEY TERMS &amp; DEFINITIONS FOR YOUR WORK</p>
+  </div>
+</header>
+<section class="g-nav g-role-panel" aria-labelledby="role-heading">
+<h2 id="role-heading" class="g-role-heading">CHOOSE YOUR ROLE</h2>
+<p class="g-role-help">Select your role to see relevant terms. You can change it at any time.</p>
+<p class="g-filter-label">TASK/ COMSENSE WORKFLOW</p>
+<div class="g-filter-buttons" id="glossary_9zcu9s-type-filters"><button class="g-filter-btn g-role-btn" type="button" data-role="General Comsense User" aria-pressed="false">General Comsense User</button><button class="g-filter-btn g-role-btn" type="button" data-role="Estimating" aria-pressed="false">Estimating</button><button class="g-filter-btn g-role-btn" type="button" data-role="Detailing" aria-pressed="false">Detailing</button><button class="g-filter-btn g-role-btn" type="button" data-role="Project Management" aria-pressed="false">Project Management</button><button class="g-filter-btn g-role-btn" type="button" data-role="AP Specialist" aria-pressed="false">AP Specialist</button></div><p class="g-role-help" id="glossary_9zcu9s-role-note"></p></section>
+<section class="g-tools" aria-label="Glossary tools">
+  <div class="g-tool-row">
+    <div class="g-search-wrap">
+      <svg class="g-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="g-search" placeholder="SEARCH GLOSSARY" id="glossary_9zcu9s-search" aria-label="Search glossary terms">
+    </div>
+    <div class="g-controls">
+      <button class="g-icon-action" id="glossary_9zcu9s-expand" type="button" title="Expand all">＋</button>
+      <button class="g-icon-action" id="glossary_9zcu9s-collapse" type="button" title="Collapse all">−</button>
+      <button class="g-pdf-compact" id="glossary_9zcu9s-pdf" type="button" title="Save as PDF">PDF ↓</button>
+    </div>
+  </div>
+</section>
+<nav class="g-nav" aria-label="Browse glossary"><div class="g-filter-head"><p class="g-filter-label">BROWSE A–Z</p><button class="g-clear-btn" id="glossary_9zcu9s-clear" type="button">Clear search &amp; letter</button></div><div class="g-az" id="glossary_9zcu9s-az"></div><div class="g-active-summary" id="glossary_9zcu9s-summary" aria-live="polite"></div></nav>
+<section aria-label="Glossary terms">
+<p class="g-section-heading">TERMS &amp; DEFINITIONS</p>
+<div class="g-terms" id="glossary_9zcu9s-terms"></div>
+</section>
+
+</div>
+<script>
+(function(){
+var id="glossary_9zcu9s", style="accordion", expanded={}, expandedLetters={}, activeLetter="";
+// Set to one of the role labels to prefilter an embedded library. Blank asks users to choose.
+var defaultRole="";
+var roles=["General Comsense User", "Estimating", "Detailing", "Project Management", "AP Specialist"];
+var terms=[{"id": "t30", "term": "Addendum / Addenda", "def": "Formal project document containing changes, clarifications, or additions issued after the original project documents.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t28", "term": "Architect Door Schedule", "def": "Project document identifying opening-specific door and frame information used by the Detailer to verify information in Comsense.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t38", "term": "BYO (By Others)", "def": "Indicates that an item is provided by another party and is not being supplied as part of the applicable project scope.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t63", "term": "Change Order (CO)", "def": "Formal project change processed after the initial project work that modifies previously established scope, products, quantities, or other project information.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing", "Project Management"]}, {"id": "t4", "term": "Complete Screen", "def": "Comsense screen used to review and coordinate opening information across the project.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t33", "term": "Customer Contract", "def": "Agreement defining the products, services, pricing, and other commitments accepted for the project.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Project Management"]}, {"id": "t18", "term": "Default Prep", "def": "Standard preparation assigned to a door or frame manufacturer and applied to applicable project openings.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t67", "term": "Det GM%", "def": "Detailed gross margin percentage calculated from the project after Detailing information and pricing have been updated.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t27", "term": "Detailed Project", "def": "Project record created in Comsense after an estimate is sold, allowing project information to move into the Detailing workflow.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t26", "term": "Detailer", "def": "A person who may perform Detailing workflow tasks by interpreting project documents and translating design intent into detailed door, frame, hardware, and submittal information.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t25", "term": "Detailing", "def": "The Comsense workflow used to review, verify, coordinate, correct, and finalize sold-project information required for accurate downstream execution.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t40", "term": "DHI Order", "def": "Standard Door and Hardware Institute sequence used to organize hardware items within a hardware set.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t6", "term": "Door Screen", "def": "Comsense screen used to review, enter, and validate door information for project openings.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t48", "term": "DPS (Door Position Switch)", "def": "Device used to monitor whether a door is open or closed.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t36", "term": "Early Release", "def": "Material that must be ordered before the project's normal release point because of schedule, lead-time, or other project requirements.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing", "Project Management"]}, {"id": "t56", "term": "Elevation", "def": "Drawing or graphical representation showing the configuration and dimensions of a door or frame.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t57", "term": "Elevation Code", "def": "Identifier assigned to an elevation type so it can be associated with applicable openings.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t49", "term": "EPT (Electric Power Transfer)", "def": "Device that transfers electrical power or wiring between the frame and door.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t66", "term": "Est GM%", "def": "Estimated gross margin percentage established during Estimating.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing", "Estimating"]}, {"id": "t21", "term": "Estimating", "def": "The Comsense workflow used to create and configure the information needed to develop and price a bid before the project is sold.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Estimating"]}, {"id": "t22", "term": "Estimator", "def": "A person who may perform Estimating workflow tasks, including developing estimates and providing information about estimating assumptions and pricing baselines.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Estimating"]}, {"id": "t39", "term": "ETR (Existing to Remain)", "def": "Indicates an existing project component that will remain in place rather than being replaced.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t19", "term": "Factory Prep", "def": "Preparation performed by the manufacturer before the product is delivered.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t10", "term": "Filter", "def": "Comsense function used to display only records that meet selected criteria.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t32", "term": "Final Estimate", "def": "Final estimating information used as a baseline for the project before it transitions into Detailing.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Estimating"]}, {"id": "t58", "term": "Fire-Rated Opening", "def": "Opening required to meet a specified fire-resistance rating using appropriately rated doors, frames, hardware, and related components.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t7", "term": "Frame Screen", "def": "Comsense screen used to review, enter, and validate frame information for project openings.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "1788406556543", "term": "Generate Headings", "def": "Comsense process used to create headings for openings based on defined criteria.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t16", "term": "Hardware Note", "def": "Information associated with hardware that communicates specifications, operating descriptions, or other relevant details.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t5", "term": "Hardware Screen", "def": "Comsense screen used to review and modify hardware sets, products, options, and notes.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t2", "term": "Hardware Set", "def": "Group of hardware assigned to a specific opening.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t64", "term": "Has Sourcing", "def": "Comsense indicator showing that sourcing activity is associated with an opening and should be preserved when changes are made.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t42", "term": "Heading", "def": "Comsense grouping used to organize openings with common hardware and opening characteristics.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t43", "term": "Heading Builder", "def": "Comsense tool used to generate headings based on selected opening criteria.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t44", "term": "Heading Note", "def": "Note associated with a heading that prints above the hardware and may communicate customer questions or changes to requested hardware.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t45", "term": "Heading Prep", "def": "Door or frame preparation associated with hardware at the heading level.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "1788406594506", "term": "Initial Submittal", "def": "The first project submittal prepared before subsequent changes or change orders are processed.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "1788406676386", "term": "Key Blank", "def": "A key that has not yet been cut for a specific keying configuration; the SOP identifies key blanks as an example of items that may be placed in a miscellaneous hardware set", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t54", "term": "Location A", "def": "Secure side of an opening when establishing Tos & Froms.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t55", "term": "Location B", "def": "Free-egress side of an opening when establishing Tos & Froms.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t41", "term": "Misc Hardware Set", "def": "Hardware set used for project hardware that is not specific to an individual opening.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t1", "term": "Opening", "def": "Complete door, frame, and hardware assembly associated with a wall opening.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t51", "term": "Opening Description", "def": "Description generated from opening attributes such as size, door type, frame type, and rating.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t37", "term": "Opening Detail Report", "def": "Comsense report containing detailed opening information that can support coordination and early ordering activities.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t52", "term": "Opening Tag", "def": "Identifier used to distinguish an opening and coordinate it with project drawings and schedules.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t65", "term": "Overall Cost", "def": "Total project cost displayed in Comsense for review during the pricing process.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t17", "term": "Prep", "def": "Preparation required on a door, frame, or related component to accommodate hardware or other project requirements.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t46", "term": "Prep Properties", "def": "Additional values or dimensions required to fully define a selected preparation.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t35", "term": "Presourcing", "def": "Comsense process used to identify doors, frames, or hardware that have already been ordered before the normal project release process.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t8", "term": "Pricing Screen", "def": "Comsense screen used to review project costs, pricing, discounts, and pricing-related errors.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Estimating"]}, {"id": "t15", "term": "Product Note", "def": "Information attached to a product that can apply wherever that product is used.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t23", "term": "Project Management", "def": "The Comsense workflow associated with managing and executing project work after information has been coordinated through upstream workflows.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Project Management"]}, {"id": "t24", "term": "Project Manager (PM)", "def": "A person who may perform Project Management workflow tasks and coordinate project information, customer needs, scope or pricing questions, submittals, change orders, and project updates.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Project Management"]}, {"id": "t3", "term": "Project Screen", "def": "Comsense screen used to establish and manage project-level settings and information.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "1788406642663", "term": "Quality Check", "def": "Review performed during Detailing to identify issues with project information, descriptions, ratings, options, and product compatibility before final output.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t47", "term": "Reapply Preps to Openings", "def": "Comsense function used to apply updated default preparation information back to applicable openings.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t9", "term": "Related Docs", "def": "Project folder containing supporting documents used during Detailing, such as drawings, specifications, setup information, contracts, and quotes.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t68", "term": "Release", "def": "Authorization to move materials into procurement, production, or fulfillment workflows.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Project Management"]}, {"id": "t12", "term": "Replace", "def": "Comsense function used to change information across multiple currently displayed records at once.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t50", "term": "RW-Tube (Raceway Tube)", "def": "Raceway preparation used to route wiring through an electrified door.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t31", "term": "Scope", "def": "Products, services, and responsibilities included in the project.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t20", "term": "Shop Prep", "def": "Preparation performed by the branch or fabrication shop rather than the manufacturer.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t14", "term": "Short Description", "def": "Condensed description of a product used within Comsense project information.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t11", "term": "Sort", "def": "Function used to organize displayed project information by a selected column or value.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t29", "term": "Specification (Spec)", "def": "Project document defining required products, materials, performance criteria, and other technical requirements.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t59", "term": "STC (Sound Transmission Class)", "def": "Rating used to describe the sound-control performance of an assembly.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t62", "term": "Submittal", "def": "Project documentation prepared for customer or design-team review that communicates the proposed doors, frames, hardware, and related project information.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing", "Project Management"]}, {"id": "t53", "term": "Tos & Froms", "def": "Detailing process used to establish the orientation and handing of an opening based on its secure and egress sides.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["Detailing"]}, {"id": "t61", "term": "UL (Underwriters Laboratories)", "def": "Certification/listing designation used for products evaluated to applicable safety standards.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t13", "term": "Validation", "def": "Comsense process used to identify missing, incomplete, or incompatible information before work proceeds.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}, {"id": "t34", "term": "Vendor Quote", "def": "Supplier-provided pricing and product information used to support project estimating, detailing, and purchasing decisions.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User", "Estimating"]}, {"id": "t60", "term": "WH (Warnock Hersey)", "def": "Certification/listing designation used for certain rated opening products.", "imageUrl": "", "linkLabel": "", "linkUrl": "", "roles": ["General Comsense User"]}];
+var root=document.getElementById(id), termsEl=document.getElementById(id+"-terms"), searchEl=document.getElementById(id+"-search"), azEl=document.getElementById(id+"-az"), summaryEl=document.getElementById(id+"-summary");
+var requestedRole=new URLSearchParams(window.location.search).get("role");
+var activeRole=roles.indexOf(requestedRole)>-1?requestedRole:defaultRole;
+function escapeHtml(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function highlight(text,q){return escapeHtml(text);}
+function matchesRole(t){return activeRole && (t.roles.indexOf(activeRole)>-1 || t.roles.indexOf("General Comsense User")>-1);}
+function formatMetadata(t,q){return '<div class="g-meta-row"><span class="g-meta-label">TASK/ COMSENSE WORKFLOW:</span>'+t.roles.map(function(r){return '<span class="g-type-tag g-type-tag-general">'+escapeHtml(r)+'</span>';}).join('')+'</div>';}
+function renderTerm(t,q){
+  var html="";
+  if(style==="accordion"){
+    var isOpen=expanded[t.id];
+    html+='<div class="g-term" id="'+id+'-term-'+t.id+'">';
+    html+='<button class="g-term-btn" aria-expanded="'+(isOpen?"true":"false")+'" data-id="'+t.id+'">';
+    html+='<span>'+highlight(t.term,q)+'</span>';
+    html+='<svg class="g-term-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>';
+    html+='</button>';
+    html+='<div class="g-term-content'+(isOpen?" open":"")+'">';
+    if(t.imageUrl)html+='<div class="g-img-wrap"><img class="g-img" src="'+t.imageUrl+'" alt="'+escapeHtml(t.term)+'"></div>';
+    html+='<div class="g-def-row"><p class="g-def">'+highlight(t.def,q)+'</p>';
+html+='<button class="g-copy-btn" type="button" data-copy-id="'+t.id+'" aria-label="Copy definition for '+escapeHtml(t.term)+'" title="Copy definition"><svg class="g-copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>';
+html+='<div class="g-copy-status" id="'+id+'-copy-status-'+t.id+'" aria-live="polite"></div>';
+    html+=formatMetadata(t,q);
+    if(t.linkLabel&&t.linkUrl)html+='<a href="'+escapeHtml(t.linkUrl)+'" target="_blank" rel="noopener" class="g-link">'+escapeHtml(t.linkLabel)+'<svg class="g-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>';
+    html+='</div></div>';
+  }else{
+    html+='<div class="g-term g-card" id="'+id+'-term-'+t.id+'">';
+    if(t.imageUrl)html+='<div class="g-img-wrap"><img class="g-img" src="'+t.imageUrl+'" alt="'+escapeHtml(t.term)+'"></div>';
+    html+='<div class="g-card-title">'+highlight(t.term,q)+'</div>';
+    html+='<div class="g-def-row"><p class="g-def">'+highlight(t.def,q)+'</p>';
+html+='<button class="g-copy-btn" type="button" data-copy-id="'+t.id+'" aria-label="Copy definition for '+escapeHtml(t.term)+'" title="Copy definition"><svg class="g-copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>';
+html+='<div class="g-copy-status" id="'+id+'-copy-status-'+t.id+'" aria-live="polite"></div>';
+    html+=formatMetadata(t,q);
+    if(t.linkLabel&&t.linkUrl)html+='<a href="'+escapeHtml(t.linkUrl)+'" target="_blank" rel="noopener" class="g-link">'+escapeHtml(t.linkLabel)+'<svg class="g-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>';
+    html+='</div>';
+  }
+  return html;
+}
+
+
+function render(){
+ var q=searchEl.value.trim().toLowerCase();
+ var filtered=terms.filter(function(t){return matchesRole(t)&&(!activeLetter||t.term[0].toUpperCase()===activeLetter)&&(!q||(t.term+' '+t.def).toLowerCase().indexOf(q)>-1);}).sort(function(a,b){return a.term.localeCompare(b.term);});
+ summaryEl.textContent=activeRole?activeRole+' • '+filtered.length+' terms':'Choose your role to begin';
+ root.querySelectorAll('.g-role-btn').forEach(function(b){var on=b.dataset.role===activeRole;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
+ document.getElementById(id+'-role-note').textContent=activeRole?(activeRole==='AP Specialist'?'Showing shared General Comsense terms. AP-specific terms have not been added yet.':activeRole==='General Comsense User'?'Showing shared General Comsense terms.':'Includes shared General Comsense terms.') : '';
+ [searchEl,document.getElementById(id+'-expand'),document.getElementById(id+'-collapse'),document.getElementById(id+'-pdf')].forEach(function(e){e.disabled=!activeRole;});
+ azEl.innerHTML='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(function(l){var available=terms.some(function(t){return matchesRole(t)&&t.term[0].toUpperCase()===l;});return '<button type="button" class="g-az-btn'+(activeLetter===l?' active':'')+'" data-letter="'+l+'" aria-pressed="'+String(activeLetter===l)+'"'+(available?'':' disabled')+'>'+l+'</button>';}).join('');
+ if(!activeRole){termsEl.innerHTML='<div class="g-empty">Choose your role above to view the glossary.</div>';return;}
+ if(!filtered.length){termsEl.innerHTML='<div class="g-empty">No matching terms. Try another search or clear the letter filter.</div>';return;}
+ var groups={};filtered.forEach(function(t){var l=t.term[0].toUpperCase();(groups[l]||(groups[l]=[])).push(t);});
+ termsEl.innerHTML=Object.keys(groups).map(function(l){var open=expandedLetters[l]||!!q;return '<div class="g-letter-group"><button type="button" class="g-letter-btn" data-group="'+l+'" aria-expanded="'+String(open)+'">'+l+'<span class="g-letter-count">'+groups[l].length+' TERMS</span></button><div class="g-letter-terms'+(open?' open':'')+'">'+groups[l].map(function(t){return renderTerm(t,q);}).join('')+'</div></div>';}).join('');
+}
+root.addEventListener('click',function(e){
+ var b=e.target.closest('button');if(!b)return;
+ if(b.dataset.role){activeRole=b.dataset.role;activeLetter='';searchEl.value='';expanded={};expandedLetters={};render();}
+ else if(b.classList.contains('g-az-btn')){activeLetter=activeLetter===b.dataset.letter?'':b.dataset.letter;render();}
+ else if(b.dataset.group){expandedLetters[b.dataset.group]=!expandedLetters[b.dataset.group];render();}
+ else if(b.classList.contains('g-term-btn')){expanded[b.dataset.id]=!expanded[b.dataset.id];render();}
+ else if(b.dataset.copyId){var t=terms.find(function(t){return t.id===b.dataset.copyId;});Promise.resolve().then(function(){return navigator.clipboard.writeText(t.term+' — '+t.def);}).then(function(){document.getElementById(id+'-copy-status-'+t.id).textContent='Copied';}).catch(function(){document.getElementById(id+'-copy-status-'+t.id).textContent='Select the definition text to copy it.';});}
+ else if(b.id===id+'-clear'){activeLetter='';searchEl.value='';render();}
+ else if(b.id===id+'-expand'){terms.forEach(function(t){expanded[t.id]=true;expandedLetters[t.term[0].toUpperCase()]=true;});render();}
+ else if(b.id===id+'-collapse'){expanded={};expandedLetters={};render();}
+ else if(b.id===id+'-pdf'){window.print();}
+});
+searchEl.addEventListener('input',render);render();
+})();
+</script>
+</body>
+</html>
